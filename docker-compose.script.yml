@@ -1,0 +1,50 @@
+version: '3'
+# https://github.com/ClassmateLin/rust-scripts
+services:
+  # 又拍云签到
+  cfdns:
+    image: classmatelin/upyun:latest
+    container_name: upyun
+    environment:
+      RUST_LOG: "$CFDNS_LOG_LEVEL"
+      UPYUN_ACCOUNT: "$UPYUN_ACCOUNT"
+    network_mode: "bridge"
+    hostname: "upyun"
+
+  # 顺丰速运APP签到
+  sf-express:
+    image: classmatelin/sf-express:latest
+    container_name: sf-express
+    environment:
+      SF_EXPRESS_SESSION_ID: "$SF_EXPRESS_SESSION_ID"
+    network_mode: "bridge"
+    hostname: "sf-express"
+
+  # 丘大叔柠檬茶小程序签到
+  uncle-qiu-sign-in: 
+    image: classmatelin/uncle-qiu-sign-in:latest
+    container_name: uncle-qiu-sign-in
+    environment:
+      Q_TOKEN: "$Q_TOKEN"
+    network_mode: "bridge"
+    hostname: "uncle-qiu-sign-in"
+
+  # JD 东东农场
+  jd-farm:
+    image: classmatelin/jd-farm:latest
+    container_name: jd-farm
+    environment:
+      JD_COOKIE: "$JD_COOKIE"
+      RUST_LOG: "$JD_LOG_LEVEL"
+    network_mode: "bridge"
+    hostname: "jd-farm"
+
+  # JD 签到领京豆
+  jd-take-bean:
+    image: classmatelin/jd-take-bean:latest
+    container_name: jd-take-bean
+    environment:
+      JD_COOKIE: "$JD_COOKIE"
+      RUST_LOG: "$JD_LOG_LEVEL"
+    network_mode: "bridge"
+    hostname: "jd-take-bean"

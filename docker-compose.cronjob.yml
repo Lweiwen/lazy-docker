@@ -1,0 +1,15 @@
+# python3 node16
+version: "3"
+services:
+  cronjob:
+    build: 
+      context: ./services/cronjob
+      args:
+        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
+        TZ: "$TIMEZONE"
+        ALPINE_VERSION: alpine:${CRONJOB_ALPINE_VERSION}
+        INSTALL_APPS: ${CRONJOB_INSTALL_APPS}
+    image: ld-cronjob
+    container_name: cronjob
+    entrypoint: ["/usr/sbin/crond", "-f", "-d", "0"]
+    restart: always 

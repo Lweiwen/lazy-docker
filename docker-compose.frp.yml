@@ -1,0 +1,17 @@
+version: "3"
+services:
+  frpc:
+    image: snowdreamtech/frpc:${FRPC_VERSION}
+    container_name: frpc
+    restart: always 
+    volumes:
+      - ${FRPC_DIR}:/etc/frp/
+    network_mode: "host"
+
+  frps:
+    image: snowdreamtech/frps:${FRPC_VERSION}
+    container_name: frps
+    restart: always 
+    volumes:
+      - ${FRPS_DIR}:/etc/frp/
+    network_mode: "host"
