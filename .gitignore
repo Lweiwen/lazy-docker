@@ -1,4 +1,8 @@
-logs/
-data/
-www/
-services/nginx/ssl/
+.idea
+.DS_Store
+.env
+nohup.out
+www/*
+!www/localhost/
+.history
+!www/
