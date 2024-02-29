@@ -5,16 +5,13 @@ docker-compose一键安装常用服务。
 ## 目录/文件说明
 
 |目录/文件|描述|
-|--:|--:|
+|--|--|
 |./www/|代码保存目录, 映射到php和nginx容器的/wwww目录|
 |./www/go/|go代码保存目录, 映射到go容器的/go目录|
 |./data/|默认所有容器的数据均保存在该目录, 通过修改环境DATA_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改|
 |./logs/|默认所有容器的数据均保存在该目录, 通过修改环境LOG_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改|
 |./services/|服务根目录, Dockfile和服务配置均放在该目录|
 |./docker-compose.dev.yml|php+go+python3+rust+mysql+redis+mongo等服务|
-|./docker-compose.halo.yml|halo2|
-|./docker-compose.memos.yml|memos|
-|./docker-compose.nas.yml|emby+qbittorrent+nas-tools|
 |./.dev.bashrc|包含快捷进入容器和执行容器内部命令的bash配置|
 |./env.sample|环境变量配置|
 
@@ -61,13 +58,13 @@ docker-compose一键安装常用服务。
 
 - nginx中连接php-fpm:
 ```
-		location ~* \.php {
-            // 以上省略其他配置
-			// fastcgi_pass php72:9000;
-            // fastcgi_pass php74:9000;
-            // fastcgi_pass php80:9000;
-            fastcgi_pass php82:9000;
-		}
+    location ~* \.php {
+        // 以上省略其他配置
+		// fastcgi_pass php72:9000;
+        // fastcgi_pass php74:9000;
+        // fastcgi_pass php80:9000;
+        fastcgi_pass php82:9000;
+	}
 
 ```
 
