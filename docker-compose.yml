@@ -1,0 +1,97 @@
+version: "3"
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.0.0/16
+
+
+services:
+  php82:
+    image: ld-php82
+    build:
+      context: ./services/php
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
+        PHP_EXTENSIONS: ${PHP_EXTENSIONS}
+        INSTALL_APPS: ${PHP_INSTALL_APPS}
+        TZ: "$TIMEZONE"
+    container_name: php
+    expose:
+      - 9501
+    volumes:
+      - ${SSH_DIR}:/root/.ssh
+      - ${SOURCE_DIR}:/www/:rw
+      - ${PHP_CLI_CONF_FILE}:/usr/local/etc/php/php.ini:ro
+      - ${PHP_FPM_CONF_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
+      - ${LOG_DIR}/php:/var/log/php
+      - ${DATA_DIR}/composer:/tmp/composer
+    restart: always
+    cap_add:
+      - SYS_PTRACE
+    privileged: true
+    networks:
+      - default
+
+  redis:
+    image: redis:${REDIS_VERSION}
+    container_name: redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - ${REDIS_CONF_FILE}:/etc/redis.conf:ro
+      - ${DATA_DIR}/redis:/data/:rw
+    restart: always
+    entrypoint: ["redis-server", "/etc/redis.conf"]
+    environment:
+      TZ: "$TIMEZONE"
+    networks:
+      - default
+
+  mysql:
+    image: mysql/mysql-server:${MYSQL_VERSION}
+    container_name: mysql
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - ${MYSQL_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
+      - ${DATA_DIR}/mysql:/var/lib/mysql/:rw
+      - ${LOG_DIR}/mysql:/var/log/mysql/:rw
+    restart: always
+    networks:
+      - default
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_ROOT_HOST: "${MYSQL_ROOT_HOST}"
+      TZ: "$TIMEZONE"
+
+  nginx:
+    image: ld-nginx
+    build:
+      context: ./services/nginx
+      args:
+        NGINX_VERSION: nginx:${NGINX_VERSION}
+        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
+    container_name: nginx
+    ports:
+      - "${NGINX_HTTP_HOST_PORT}:80"
+      - "${NGINX_HTTPS_HOST_PORT}:443"
+    volumes:
+      - ${SOURCE_DIR}:/www/:rw
+      - ${NGINX_SSL_CERTIFICATE_DIR}:/ssl:rw
+      - ${NGINX_CONFD_DIR}:/etc/nginx/conf.d/:rw
+      - ${NGINX_CONF_FILE}:/etc/nginx/nginx.conf:ro
+      - ${NGINX_FASTCGI_PHP_CONF}:/etc/nginx/fastcgi-php.conf:ro
+      - ${NGINX_FASTCGI_PARAMS}:/etc/nginx/fastcgi_params:ro
+      - ${LOG_DIR}/nginx:/var/log/nginx/:rw
+    environment:
+      TZ: "$TIMEZONE"
+    restart: always
+    networks:
+      default:
+        ipv4_address: 172.16.0.21
+
