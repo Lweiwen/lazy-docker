@@ -58,13 +58,13 @@ docker-compose一键安装常用服务。
 
 - nginx中连接php-fpm:
 ```
-    location ~* \.php {
-        // 以上省略其他配置
-		// fastcgi_pass php72:9000;
-        // fastcgi_pass php74:9000;
-        // fastcgi_pass php80:9000;
-        fastcgi_pass php82:9000;
-	}
+location ~* \.php {
+   // 以上省略其他配置
+   // fastcgi_pass php72:9000;
+   // fastcgi_pass php74:9000;
+   // fastcgi_pass php80:9000;
+   fastcgi_pass php82:9000;
+}
 
 ```
 
