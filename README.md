@@ -20,7 +20,7 @@ docker-compose一键安装常用服务。
 
 ## 使用方法
 
-- 拉取代码: `git clone https://github.com/ClassmateLin/ds.git ~/; cd ~/ds;`
+- 拉取代码: `git clone https://github.com/Lweiwen/lazy-docker.git ~/; cd ~/ds;`
 - 复制默认环境变量配置:`cp .env.sample .env`, 自行按需修改。
 - 添加快捷命令到.zshrc:  `echo "source ~/ds/.dev.bashrc" >> ~/.zshrc;` 或者.bashrc:`echo "source ~/ds/.dev.bashrc" >> ~/.bashrc;`, 或者只复制需要的命令函数到你的终端配置文件中。
 - `cp docker-compose.dev.yml docker-compose.yml`, 自行注释不需要的服务。

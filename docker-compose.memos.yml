@@ -1,9 +1,0 @@
-version: "3.0"
-services:
-  memos:
-    image: neosmemo/memos:${MEMOS_VERSION}
-    container_name: memos
-    volumes:
-      - ${MEMOS_DATA_DIR}:/var/opt/memos
-    ports:
-      - ${MEMOS_PORT}:5230
