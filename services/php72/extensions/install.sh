@@ -708,9 +708,11 @@ if [[ -z "${EXTENSIONS##*,phalcon,*}" ]]; then
     isPhpVersionGreaterOrEqual 7 2
 
     if [[ "$?" = "1" ]]; then
-        printf "\n" | pecl install phalcon
-        docker-php-ext-enable psr
-        docker-php-ext-enable phalcon
+            curl -L -o /tmp/extensions/cphalcon.zip https://github.com/phalcon/cphalcon/archive/3.4.x.zip \
+        && unzip -d /tmp/extensions/ /tmp/extensions/cphalcon.zip \
+        && cd /tmp/extensions/cphalcon-3.4.x/build \
+        && . ./install \
+        && echo 'extension=phalcon.so' > /usr/local/etc/php/conf.d/phalcon.ini
     else
         echo "---------- PHP Version>= 7.2----------"
     fi

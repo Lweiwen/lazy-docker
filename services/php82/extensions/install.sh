@@ -600,7 +600,7 @@ if [[ -z "${EXTENSIONS##*,swoole,*}" ]]; then
     echo "---------- Install swoole ----------"    
     isPhpVersionGreaterOrEqual 8 0
     if [[ "$?" = "1" ]]; then
-        installExtensionFromTgz swoole-5.0.2 --enable-openssl
+        installExtensionFromTgz swoole-5.0.2
     fi
 fi
 
@@ -629,8 +629,7 @@ if [[ -z "${EXTENSIONS##*,xlswriter,*}" ]]; then
     isPhpVersionGreaterOrEqual 8 0
 
     if [[ "$?" = "1" ]]; then
-        printf "\n" | pecl install xlswriter
-        docker-php-ext-enable xlswriter
+        installExtensionFromTgz xlswriter-1.5.5
     else
         echo "---------- PHP Version>= 8.0----------"
     fi
@@ -668,9 +667,11 @@ if [[ -z "${EXTENSIONS##*,phalcon,*}" ]]; then
     isPhpVersionGreaterOrEqual 8 0
 
     if [[ "$?" = "1" ]]; then
-        printf "\n" | pecl install phalcon
-        docker-php-ext-enable psr
-        docker-php-ext-enable phalcon
+            curl -L -o /tmp/extensions/cphalcon.zip https://github.com/phalcon/cphalcon/archive/master.zip \
+        && unzip -d /tmp/extensions/ /tmp/extensions/cphalcon.zip \
+        && cd /tmp/extensions/cphalcon-master/build \
+        && . ./install \
+        && echo 'extension=phalcon.so' > /usr/local/etc/php/conf.d/phalcon.ini
     else
         echo "---------- PHP Version>= 8.0----------"
     fi
