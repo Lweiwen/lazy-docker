@@ -3,11 +3,11 @@
 .project
 *.patch
 .idea/
-.git/
-runtime/
-vendor/
+/.git
+/runtime
 .phpintel/
 .env
 .DS_Store
 *.cache
 *.lock
+/vendor

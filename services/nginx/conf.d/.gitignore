@@ -2,3 +2,8 @@
 !.gitignore
 !certs/localhost/
 !localhost.conf
+!hyperf.conf
+!laravel.conf
+!laravels.conf
+!webman.conf
+!phalcon.conf

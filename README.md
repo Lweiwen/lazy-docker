@@ -1,19 +1,19 @@
-# DS
+# php框架测试
 docker-compose一键安装常用服务。
 
+## 介绍
+集中测试php框架 hyperf,webman,laravel(s),phalcon 性能
 
 ## 目录/文件说明
 
-|目录/文件| 描述                                                         |
-|--|------------------------------------------------------------|
-|./www/| 代码保存目录, 映射到php和nginx容器的/www目录                              |
-|./www/go/| go代码保存目录, 映射到go容器的/go目录                                    |
-|./data/| 默认所有容器的数据均保存在该目录, 通过修改环境DATA_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改 |
-|./logs/| 默认所有容器的数据均保存在该目录, 通过修改环境LOG_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改  |
-|./services/| 服务根目录, Dockfile和服务配置均放在该目录                                 |
-|./docker-compose.dev.yml| php+mysql+nginx+redis等服务                                   |
-|./.dev.bashrc| 包含快捷进入容器和执行容器内部命令的bash配置                                   |
-|./env.sample| 环境变量配置                                                     |
+| 目录/文件                    | 描述                                                           |
+|:-------------------------|:-------------------------------------------------------------|
+| ./www/                   | 代码保存目录, 映射到php和nginx容器的/www目录                                |
+| ./data/                  | 默认所有容器的数据均保存在该目录, 通过修改环境DATA_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改   |
+| ./logs/                  | 默认所有容器的数据均保存在该目录, 通过修改环境LOG_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改    |
+| ./services/              | 服务根目录, Dockfile和服务配置均放在该目录                                   |
+| ./docker-compose.dev.yml | php+mysql+nginx+redis等服务                                     |
+| ./env.sample             | 环境变量配置                                                       |
 
 ## 使用方法
 
@@ -22,17 +22,29 @@ docker-compose一键安装常用服务。
 - `cp docker-compose.dev.yml docker-compose.yml`, 自行注释不需要的服务。
 - `docker-compose up -d`启动开发环境。
 
+## 框架使用
+注意：所有框架均要进入对应的容器所在文件夹下执行`composer install`命令生成所需依赖。
 
-## .dev.bashrc中的命令列表
-|命令|说明|
-|:--|--|
-|dphpxx|进入PHPxx容器, xx为版本号, 如dphp72进入php7.2的容器|
-|phpxx|执行对应版本的php命令, 如执行php7.2版本的php命令, 则php72|
-|composerxx|执行对应php版本的composer命令, 如执行php7.2版本的composer命令, 则composer72|
-|dmysqlx|进入mysql容器, 如dmysql5|
-|dredisx|进入redis容器, 如dredis5|
-|dnginx|进入nginx容器|
-|nginx|执行nginx容器的nginx命令|
+|框架|php容器| 使用                                                                     |
+|:-----:|:-----:|:-----------------------------------------------------------------------|
+|hyperf | php82 | `docker exec -it php82 bash` 进入容器后执行 `php bin/hyperf.php start` 启动服务   |
+|webman  | php82 | `docker exec -it php82 bash` 进入容器后执行 `php start.php start` 启动服务        |
+|laravel | php80 |                                                                        |
+|laravels | php80 | `docker exec -it php80 bash` 进入容器后执行 `php bin/laravels.php start` 启动服务 |
+|phalcon  | php82 |                                                                        |
+
+
+## nginx配置测试框架域名
+注：其中已内置如下域名配置文件，请在本地host配置域名指向对应域名地址。
+
+| 框架       | 域名               |
+|:---------|:-----------------|
+| hyperf   | hyperf.ljh.net   |
+| laravel  | laravel.ljh.net  |
+| laravels | laravels.ljh.net |
+| phalcon  | phalcon.ljh.net  |
+| webman   | webman.ljh.net   |
+
 
 ## 环境变量说明
 
