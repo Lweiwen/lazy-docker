@@ -1,7 +1,4 @@
 .idea
 .DS_Store
 .env
-www/*
-!www/localhost/
 .history
-!www/

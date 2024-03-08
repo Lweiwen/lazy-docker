@@ -1,0 +1,16 @@
+/App/Cache/Data/*
+!/App/Cache/Data/ChinaArea.json
+/vendor/*
+/composer.lock
+/.env
+/.idea
+/Public/upload/*
+/Public/img/*
+.env
+/Public/zs-upload
+/App/Libs/BQcode/Qrcode/errors.txt
+.vscode
+.devcontainer
+/idehelper
+/.todoList
+/App/Tasks/OrderTask.php
