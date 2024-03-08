@@ -1,60 +1,7 @@
 <?php
 
 return [
-    /**
-     *  权限名称
-     *  说明：
-     *      1、根key代表登录认证路径，对应的值是一个数组，代表每个端(路径)对应的权限；
-     *      2、每个端(路径)对应的权限数组中，
-     *          1)key表示：该权限在数据库中，对应的端(路径)的成员表里面，权限字段的值
-     *          2)value表示：该权限在项目中定义的名称，在登录、权限判断、前后端交流中，使用该名称；
-     */
-    'role_name' => [
-        //总后台
-        'backstage' => [
-            //总后台超级管理员
-            1 => 'backstage_supper_admin',
-            //总后台管理员
-            2 => 'backstage_admin',
-            //总后台主管
-            3 => 'backstage_manager',
-            //总后台业务员
-            4 => 'backstage_salesman',
-            //总后台财务
-            5 => 'backstage_cashier',
-            //总后台核价员
-            6 => 'backstage_checker'
-        ],
-        //商家后台
-        'business' => [
-            //总管
-            1 => 'business_supper_admin',
-            //管理
-            2 => 'business_admin',
-            //商家店长
-            3 => 'business_shop_manager',
-            //商家员工
-            4 => 'business_staff',
-            //跟进业务员(虚拟)
-            99=> 'provisional_salesman',
-        ],
-        //分站后台
-        'substation' => [
-            //站长
-            1 => 'site_admin',
-            //站点主管
-            2 => 'site_manager',
-            //站点业务员
-            3 => 'site_salesman',
-            //财务
-            4 => 'site_cashier',
-            //核价员
-            5 => 'site_checker'
-        ],
-        'web' => [],
-        //web临时登录
-        'silence' => [],
-    ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +15,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'ljh_guard',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -100,9 +47,9 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        'ljh_guard' => [
-            'driver' => 'ljh_jwt'       //使用Auth服务提供者(AuthServiceProvider)中额外注册的登陆守护器ljh_jwt
-        ],
+        // 'ljh_guard' => [
+        //     'driver' => 'ljh_jwt'       //使用Auth服务提供者(AuthServiceProvider)中额外注册的登陆守护器ljh_jwt
+        // ],
     ],
 
     /*
