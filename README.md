@@ -4,16 +4,16 @@ docker-compose一键安装常用服务。
 
 ## 目录/文件说明
 
-|目录/文件|描述|
-|--|--|
-|./www/|代码保存目录, 映射到php和nginx容器的/wwww目录|
-|./www/go/|go代码保存目录, 映射到go容器的/go目录|
-|./data/|默认所有容器的数据均保存在该目录, 通过修改环境DATA_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改|
-|./logs/|默认所有容器的数据均保存在该目录, 通过修改环境LOG_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改|
-|./services/|服务根目录, Dockfile和服务配置均放在该目录|
-|./docker-compose.dev.yml|php+go+python3+rust+mysql+redis+mongo等服务|
-|./.dev.bashrc|包含快捷进入容器和执行容器内部命令的bash配置|
-|./env.sample|环境变量配置|
+|目录/文件| 描述                                                         |
+|--|------------------------------------------------------------|
+|./www/| 代码保存目录, 映射到php和nginx容器的/www目录                              |
+|./www/go/| go代码保存目录, 映射到go容器的/go目录                                    |
+|./data/| 默认所有容器的数据均保存在该目录, 通过修改环境DATA_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改 |
+|./logs/| 默认所有容器的数据均保存在该目录, 通过修改环境LOG_DIR更换数据存储位置, 每个容器的数据保存路径可单独修改  |
+|./services/| 服务根目录, Dockfile和服务配置均放在该目录                                 |
+|./docker-compose.dev.yml| php+mysql+nginx+redis等服务                                   |
+|./.dev.bashrc| 包含快捷进入容器和执行容器内部命令的bash配置                                   |
+|./env.sample| 环境变量配置                                                     |
 
 ## 使用方法
 
@@ -31,8 +31,6 @@ docker-compose一键安装常用服务。
 |composerxx|执行对应php版本的composer命令, 如执行php7.2版本的composer命令, 则composer72|
 |dmysqlx|进入mysql容器, 如dmysql5|
 |dredisx|进入redis容器, 如dredis5|
-|dpython3|进入python3容器|
-|dmongo5|进入Mongodb5容器|
 |dnginx|进入nginx容器|
 |nginx|执行nginx容器的nginx命令|
 
