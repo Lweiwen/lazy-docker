@@ -17,9 +17,8 @@ docker-compose一键安装常用服务。
 
 ## 使用方法
 
-- 拉取代码: `git clone https://github.com/Lweiwen/lazy-docker.git ~/; cd ~/ds;`
+- 拉取代码: `git clone https://github.com/Lweiwen/lazy-docker.git ~/;`
 - 复制默认环境变量配置:`cp .env.sample .env`, 自行按需修改。
-- 添加快捷命令到.zshrc:  `echo "source ~/ds/.dev.bashrc" >> ~/.zshrc;` 或者.bashrc:`echo "source ~/ds/.dev.bashrc" >> ~/.bashrc;`, 或者只复制需要的命令函数到你的终端配置文件中。
 - `cp docker-compose.dev.yml docker-compose.yml`, 自行注释不需要的服务。
 - `docker-compose up -d`启动开发环境。
 
@@ -35,19 +34,6 @@ docker-compose一键安装常用服务。
 |dpython3|进入python3容器|
 |dmongo5|进入Mongodb5容器|
 |dnginx|进入nginx容器|
-|drust|进入rust容器|
-|rustup|执行russ容器的rustup命令|
-|cargo|执行rust容器的cargo命令|
-|python3|执行python3容器的python命令|
-|pip3|执行python3容器的pip命令|
-|dnode16|进入node 16容器|
-|dnode18|进入node 18容器|
-|node16|执行16.x版本的node|
-|node18|执行18.x版本的node|
-|npm16|执行16.x版本node对应的npm|
-|npm18|执行16.x版本node对应的npm|
-|dgo|进入go容器|
-|go|执行容器的go命令|
 |nginx|执行nginx容器的nginx命令|
 
 ## 环境变量说明
@@ -78,10 +64,4 @@ mysql_port=3306
 ```
 redis_host='redis5'
 redis_port=6379
-```
-
-- 代码中连接mongodb
-```
-mongodb_host='mongo5'
-mongodb_port=27017
 ```
