@@ -11,3 +11,4 @@
 *.cache
 *.lock
 /vendor
+/composer.lock
